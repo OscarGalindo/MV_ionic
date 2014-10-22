@@ -16,24 +16,11 @@
     <script src="js/services.js"></script>
   </head>
   <body ng-app="mv" animation="slide-left-right-ios7">
-      <div class="bar bar-header bar-energized">
-        <h1 class="title">Login Mediavida</h1>
-      </div>
-
-    <div class="row row-center" id="login">
-      <div class="col">
-        <div class="list list-inset">
-          <label class="item item-input">
-            <input type="text" placeholder="Username">
-          </label>
-          <label class="item item-input">
-            <input type="text" placeholder="Password">
-          </label>
-          <button class="button button-positive button-full">
-            Login
-          </button>
-        </div>
-      </div>
+    <div class="bar bar-header bar-energized">
+        <h1 class="title">Mediavida</h1>
     </div>
+
+    <div id="content" ui-view></div>
+
   </body>
 </html>
