@@ -1,7 +1,8 @@
 /* Empty. Add your own CSS if you like */
-html, body, #login {
+html, body, #content, #login  {
   height: 100%;
 }
+
 #login, .list-inset {
 	background-color: #F4F6F1 !important;
 }
