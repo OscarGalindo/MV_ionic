@@ -1,15 +1,20 @@
-angular.module('mv.controllers', [])
+angular.module('mv.controllers', ['mv.services'])
 
-.controller('DashCtrl', function($scope) {
+.controller('HomeCtrl', function($rootScope, $scope, $state) {
+    if(!$rootScope.islogged) {
+        $state.go('login');
+    }
+
 })
 
-.controller('FriendsCtrl', function($scope, Friends) {
-  $scope.friends = Friends.all();
-})
-
-.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
-  $scope.friend = Friends.get($stateParams.friendId);
-})
-
-.controller('AccountCtrl', function($scope) {
+.controller('LoginCtrl', function($rootScope, $scope, $state, Login) {
+        $scope.doLogin = function() {
+            var data = {
+                username: $scope.username,
+                password: $scope.password,
+                cookie: 1
+            };
+            $rootScope.data = Login.postLogin(data);
+            console.log($rootScope.data);
+        }
 });

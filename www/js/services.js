@@ -1,21 +1,30 @@
 angular.module('mv.services', [])
 
-.factory('Login', function() {
-  
-  var friends = [
-    { id: 0, name: 'Scruff McGruff' },
-    { id: 1, name: 'G.I. Joe' },
-    { id: 2, name: 'Miss Frizzle' },
-    { id: 3, name: 'Ash Ketchum' }
-  ];
+    .factory('Login', function ($http) {
 
-  return {
-    all: function() {
-      return friends;
-    },
-    get: function(friendId) {
-      // Simple index lookup
-      return friends[friendId];
-    }
-  }
-});
+        var url = 'http://mv.local/app_dev.php/login';
+
+        return {
+            postLogin: function (data) {
+                $http.post(url, data, {
+                    headers: { 'Content-Type': 'application/json'}
+                })
+                    .success(function(data) {
+                        return data;
+                    })
+                    .error(function(error) {
+                        return error;
+                    });
+
+            },
+            getCookies: function (friendId) {
+                // Simple index lookup
+                return friends[friendId];
+            },
+            isLogged: function() {
+
+                return true;
+            }
+
+        }
+    });
