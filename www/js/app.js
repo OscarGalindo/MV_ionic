@@ -12,16 +12,17 @@ angular.module('mv', ['ionic', 'mv.controllers'])
     })
 
     .config(function ($stateProvider, $urlRouterProvider) {
+
         $stateProvider
             .state('home', {
                 url: '/',
-                templateUrl: 'templates/home.html',
-                controller: 'HomeCtrl'
+                controller: 'HomeCtrl',
+                templateUrl: 'templates/home.html'
             })
             .state('login', {
                 url: '/login',
-                templateUrl: 'templates/login.html',
-                controller: 'LoginCtrl'
+                controller: 'LoginCtrl',
+                templateUrl: 'templates/login.html'
             });
         $urlRouterProvider.otherwise('/');
     });

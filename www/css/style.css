@@ -1,8 +1,3 @@
-/* Empty. Add your own CSS if you like */
-html, body, #content, #login  {
-  height: 100%;
-}
-
-#login, .list-inset {
-	background-color: #F4F6F1 !important;
+.footerbar {
+    padding-left: 0 !important;
 }

@@ -1,30 +1,17 @@
 angular.module('mv.services', [])
 
-    .factory('Login', function ($http) {
+    .factory('MVRest', ['$http', function ($http) {
 
-        var url = 'http://mv.local/app_dev.php/login';
+        var base = 'http://mv.local';
+        var result = {};
 
-        return {
-            postLogin: function (data) {
-                $http.post(url, data, {
-                    headers: { 'Content-Type': 'application/json'}
-                })
-                    .success(function(data) {
-                        return data;
-                    })
-                    .error(function(error) {
-                        return error;
-                    });
-
-            },
-            getCookies: function (friendId) {
-                // Simple index lookup
-                return friends[friendId];
-            },
-            isLogged: function() {
-
-                return true;
-            }
-
+        result.login = function(data) {
+            return $http.post(base + '/login', data);
         }
-    });
+
+        result.notifications = function(data) {
+            return $http.post(base + '/getNotifications', data);
+        }
+
+        return result;
+    }]);
