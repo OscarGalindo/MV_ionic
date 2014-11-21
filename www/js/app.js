@@ -1,5 +1,6 @@
 angular.module('mv', ['ionic', 'mv.controllers'])
-    .run(function ($ionicPlatform) {
+    .run(function ($ionicPlatform, $rootScope, $state) {
+        $rootScope.$state = $state;
         $ionicPlatform.ready(function () {
             if (window.cordova && window.cordova.plugins.Keyboard) {
                 cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);

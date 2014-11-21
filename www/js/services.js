@@ -18,4 +18,21 @@ angular.module('mv.services', [])
         };
 
         return result;
+    }])
+
+    .factory('BusyService', ['$ionicLoading', function($ionicLoading) {
+        return {
+            show: function() {
+                $ionicLoading.show({
+                    content: '<h1><i class="icon ion-ios7-reloading"></i></h1>',
+                    animation: 'fade-in',
+                    showBackdrop: true,
+                    maxWidth: 93,
+                    showDelay: 100
+                });
+            },
+            hide: function() {
+                $ionicLoading.hide();
+            }
+        };
     }]);

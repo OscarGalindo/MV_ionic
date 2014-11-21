@@ -1,14 +1,8 @@
 angular.module('mv.controllers', ['mv.services', 'ionic.utils'])
-    .controller('indexCtrl', function($rootScope, $scope, $state, $location, $ionicLoading, $timeout, MVRest, $localstorage) {
-        $ionicLoading.show({
-            content: 'Loading',
-            animation: 'fade-in',
-            showBackdrop: true,
-            maxWidth: 200,
-            showDelay: 0
-        });
+    .controller('indexCtrl', function($rootScope, $scope, $state, $location, BusyService, $timeout, MVRest, $localstorage) {
+        BusyService.show();
         $timeout(function () {
-            $ionicLoading.hide();
+            BusyService.hide();
 
             user_data = $localstorage.getObject('user_data');
             if(user_data.result === true) {
@@ -19,35 +13,27 @@ angular.module('mv.controllers', ['mv.services', 'ionic.utils'])
         }, 2000);
     })
 
-    .controller('HomeCtrl', function($rootScope, $scope, $state, $stateParams, MVRest, $ionicLoading, $localstorage, $timeout) {
-        $ionicLoading.show({
-            content: 'Loading',
-            animation: 'fade-in',
-            showBackdrop: true,
-            maxWidth: 200,
-            showDelay: 0
-        });
+    .controller('HomeCtrl', function($rootScope, $scope, $state, $stateParams, MVRest, BusyService, $localstorage) {
+        BusyService.show();
 
-        $timeout(function () {
-            $ionicLoading.hide();
-            user_data = $localstorage.getObject('user_data');
-            $scope.nickname = user_data.nickname;
+        user_data = $localstorage.getObject('user_data');
+        $scope.nickname = user_data.nickname;
 
-            MVRest.notifications(user_data.cookies)
-                .success(function(data) {
-                    $scope.notifications = data;
-                });
-        }, 1000);
+        MVRest.notifications(user_data.cookies)
+            .success(function(data) {
+                if(data.error) {
+                    $state.go('login');
+                }
+                $scope.notifications = data;
+            })
+            .finally(function() {
+                BusyService.hide();
+            }
+        );
     })
-    .controller('loginCtrl', function($rootScope, $scope, $state, $stateParams, MVRest, $ionicLoading, $localstorage) {
+    .controller('loginCtrl', function($rootScope, $scope, $state, $stateParams, MVRest, BusyService, $localstorage) {
         $scope.doLogin = function() {
-            $ionicLoading.show({
-                content: 'Loading',
-                animation: 'fade-in',
-                showBackdrop: true,
-                maxWidth: 200,
-                showDelay: 0
-            });
+            BusyService.show();
             var data = {
                 username: this.username,
                 password: this.password,
@@ -58,32 +44,29 @@ angular.module('mv.controllers', ['mv.services', 'ionic.utils'])
                 .success(function(data) {
                     $rootScope.data = data;
                     if(data.result) {
-                        $ionicLoading.hide();
                         $localstorage.setObject('user_data', data);
                         $state.go('home');
                     } else {
                         console.error('Error al loguearse');
                         $state.go('login');
                     }
-                });
+                })
+                .finally(function() {
+                    BusyService.hide();
+                }
+            );
         }
     })
-    .controller('logoutCtrl', function($rootScope, $scope, $state, $location, $ionicLoading, $timeout, MVRest, $localstorage) {
-        $ionicLoading.show({
-            content: 'Loading',
-            animation: 'fade-in',
-            showBackdrop: true,
-            maxWidth: 200,
-            showDelay: 0
-        });
-        $timeout(function () {
-            $ionicLoading.hide();
-            user_data = $localstorage.getObject('user_data');
-            MVRest.logout(user_data.logout_url)
-                .then(function() {
-                    user_data = $localstorage.setObject('user_data', {result: false});
-                    $state.go('login');
-                });
-        }, 2000);
-    })
-;
+    .controller('logoutCtrl', function($rootScope, $scope, $state, BusyService, MVRest, $localstorage) {
+        BusyService.show();
+        user_data = $localstorage.getObject('user_data');
+        MVRest.logout(user_data.logout_url)
+            .then(function() {
+                user_data = $localstorage.setObject('user_data', {result: false});
+            })
+            .finally(function() {
+                BusyService.hide();
+                $state.go('login');
+            }
+        );
+    });
