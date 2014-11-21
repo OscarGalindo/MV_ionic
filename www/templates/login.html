@@ -1,14 +1,14 @@
-<ion-view title="Login">
+<ion-view title="Login" class="slide-left-right">
     <ion-content>
         <div class="row row-center" id="login">
             <div class="col">
                 <div class="list list-inset">
-                    <form name="loginForm">
+                    <form name="loginForm" method="POST">
                         <label class="item item-input">
                             <input name="username" ng-model="username" type="text" placeholder="Username">
                         </label>
                         <label class="item item-input">
-                            <input name="password" ng-model="password" type="text" placeholder="Password">
+                            <input name="password" ng-model="password" type="password" placeholder="Password">
                         </label>
                         <ion-toggle toggle-class="toggle-energized">Remember me?</ion-toggle>
                         <button ng-click="doLogin()" class="button button-energized button-full">Login</button>

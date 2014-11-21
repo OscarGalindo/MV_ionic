@@ -1,5 +1,4 @@
 angular.module('mv', ['ionic', 'mv.controllers'])
-
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
             if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -14,15 +13,25 @@ angular.module('mv', ['ionic', 'mv.controllers'])
     .config(function ($stateProvider, $urlRouterProvider) {
 
         $stateProvider
-            .state('home', {
+            .state('index', {
                 url: '/',
+                controller: 'indexCtrl',
+                templateUrl: 'templates/index.html'
+            })
+            .state('home', {
+                url: '/home',
                 controller: 'HomeCtrl',
                 templateUrl: 'templates/home.html'
             })
             .state('login', {
                 url: '/login',
-                controller: 'LoginCtrl',
+                controller: 'loginCtrl',
                 templateUrl: 'templates/login.html'
+            })
+            .state('logout', {
+                url: '/logout',
+                controller: 'logoutCtrl',
+                templateUrl: 'templates/logout.html'
             });
         $urlRouterProvider.otherwise('/');
     });
