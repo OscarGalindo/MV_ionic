@@ -1,3 +1,6 @@
 .footerbar {
     padding-left: 0 !important;
 }
+ion-nav-view {
+    background-color: #fff;
+}

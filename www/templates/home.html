@@ -1,23 +1,41 @@
-<ion-view title="{{nickname}}">
-    <ion-content>
-        <div class="list">
-            <a class="item item-icon-left" href="#">
-                <i class="icon ion-alert"></i>
-                Avisos
-                <span class="badge badge-dark">{{notifications.avs}}</span>
-            </a>
+<ion-header-bar class="bar-dark">
+    <h1 class="title">Notificaciones</h1>
+</ion-header-bar>
 
-            <a class="item item-icon-left" href="#">
-                <i class="icon ion-star"></i>
-                Favoritos
-                <span class="badge badge-dark">{{notifications.fav}}</span>
-            </a>
+<ion-content>
+    <div class="list">
+        <a class="item item-icon-left" href="#">
+            <i class="icon ion-alert"></i>
+            Avisos
+            <span class="badge badge-dark">{{notifications.avs}}</span>
+        </a>
 
-            <a class="item item-icon-left" href="#">
-                <i class="icon ion-email"></i>
-                Mensajes
-                <span class="badge badge-dark">{{notifications.msj}}</span>
+        <a class="item item-icon-left" href="#">
+            <i class="icon ion-star"></i>
+            Favoritos
+            <span class="badge badge-dark">{{notifications.fav}}</span>
+        </a>
+
+        <a class="item item-icon-left" href="#">
+            <i class="icon ion-email"></i>
+            Mensajes
+            <span class="badge badge-dark">{{notifications.msj}}</span>
+        </a>
+    </div>
+</ion-content>
+
+<ion-footer-bar class="footerbar bar-dark">
+    <div class="tabs-striped tabs-background-dark tabs-color-assertive">
+        <div class="tabs">
+            <a class="tab-item active" ng-click="$state.go('home')">
+                <i class="icon ion-home"></i>
+            </a>
+            <a class="tab-item" href="#">
+                <i class="icon ion-navicon"></i>
+            </a>
+            <a class="tab-item" ng-click="$state.go('logout')">
+                <i class="icon ion-log-out"></i>
             </a>
         </div>
-    </ion-content>
-</ion-view>
+    </div>
+</ion-footer-bar>
