@@ -12,7 +12,6 @@ angular.module('mv', ['ionic', 'mv.controllers'])
     })
 
     .config(function ($stateProvider, $urlRouterProvider) {
-
         $stateProvider
             .state('index', {
                 url: '/',
@@ -33,6 +32,11 @@ angular.module('mv', ['ionic', 'mv.controllers'])
                 url: '/logout',
                 controller: 'logoutCtrl',
                 templateUrl: 'templates/logout.html'
+            })
+            .state('forums', {
+                url: '/forums',
+                controller: 'forumsCtrl',
+                templateUrl: 'templates/forums.html'
             });
         $urlRouterProvider.otherwise('/');
     });

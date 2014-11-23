@@ -1,0 +1,35 @@
+<ion-header-bar class="bar-dark">
+    <h1 class="title">Foros</h1>
+</ion-header-bar>
+
+<ion-content>
+    <div class="row row-center">
+        <div class="col">
+            <ion-list>
+                <ion-item ng-repeat-start="(cat, forum) in forums" class="item-divider">
+                    {{cat}}
+                </ion-item>
+                <ion-item ng-repeat="title in forum">
+                    {{title.title}}
+                </ion-item>
+                <ion-item ng-repeat-end></ion-item>
+            </ion-list>
+        </div>
+    </div>
+</ion-content>
+
+<ion-footer-bar class="footerbar bar-dark">
+    <div class="tabs-striped tabs-background-dark tabs-color-assertive">
+        <div class="tabs">
+            <a class="tab-item" ng-click="$state.go('home')">
+                <i class="icon ion-home"></i>
+            </a>
+            <a class="tab-item active" ng-click="$state.go('forums')">
+                <i class="icon ion-navicon"></i>
+            </a>
+            <a class="tab-item" ng-click="$state.go('logout')">
+                <i class="icon ion-log-out"></i>
+            </a>
+        </div>
+    </div>
+</ion-footer-bar>

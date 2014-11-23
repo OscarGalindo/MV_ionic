@@ -8,13 +8,14 @@ angular.module('mv.services', [])
         result.login = function(data) {
             return $http.post(base + '/login', data);
         };
-
         result.notifications = function(data) {
             return $http.post(base + '/getNotifications', data);
         };
-
         result.logout = function(url) {
             return $http.post(base + '/logout', url);
+        };
+        result.getforums = function() {
+            return $http.get(base + '/');
         };
 
         return result;

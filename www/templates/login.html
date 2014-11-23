@@ -14,7 +14,7 @@
                         <input name="password" ng-model="password" type="password" placeholder="Password">
                     </label>
                     <ion-toggle toggle-class="toggle-energized">Remember me?</ion-toggle>
-                    <button ng-click="doLogin()" class="button button-energized button-full">Login</button>
+                    <button ng-click="doLogin()" class="button button-dark button-full">Login</button>
                 </form>
             </div>
         </div>
@@ -27,7 +27,7 @@
             <a class="tab-item active" ng-click="$state.go('home')">
                 <i class="icon ion-home"></i>
             </a>
-            <a class="tab-item" href="#">
+            <a class="tab-item" ng-click="$state.go('forums')">
                 <i class="icon ion-navicon"></i>
             </a>
             <a class="tab-item" ng-click="$state.go('logout')">

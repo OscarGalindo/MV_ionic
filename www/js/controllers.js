@@ -12,7 +12,6 @@ angular.module('mv.controllers', ['mv.services', 'ionic.utils'])
             $state.go('login');
         }, 2000);
     })
-
     .controller('HomeCtrl', function($rootScope, $scope, $state, $stateParams, MVRest, BusyService, $localstorage) {
         BusyService.show();
 
@@ -22,6 +21,7 @@ angular.module('mv.controllers', ['mv.services', 'ionic.utils'])
         MVRest.notifications(user_data.cookies)
             .success(function(data) {
                 if(data.error) {
+                    user_data = $localstorage.setObject('user_data', {result: false});
                     $state.go('login');
                 }
                 $scope.notifications = data;
@@ -69,4 +69,15 @@ angular.module('mv.controllers', ['mv.services', 'ionic.utils'])
                 $state.go('login');
             }
         );
+    })
+    .controller('forumsCtrl', function($scope, BusyService, MVRest) {
+        BusyService.show();
+
+        MVRest.getforums()
+            .then(function(data) {
+                $scope.forums = data.data;
+            })
+            .finally(function() {
+                BusyService.hide();
+            });
     });
