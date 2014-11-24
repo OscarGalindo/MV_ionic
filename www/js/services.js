@@ -2,7 +2,8 @@ angular.module('mv.services', [])
 
     .factory('MVRest', ['$http', function ($http) {
 
-        var base = 'http://91.121.182.76/app.php';
+        //var base = 'http://91.121.182.76/app.php';
+        var base = 'http://localhost/MV/web/app.php';
         var result = {};
 
         result.login = function(data) {
@@ -16,6 +17,9 @@ angular.module('mv.services', [])
         };
         result.getforums = function() {
             return $http.get(base + '/');
+        };
+        result.getTopics = function(slug) {
+            return $http.get(base + '/getTopics/' + slug);
         };
 
         return result;

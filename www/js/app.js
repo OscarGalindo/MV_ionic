@@ -37,6 +37,11 @@ angular.module('mv', ['ionic', 'mv.controllers'])
                 url: '/forums',
                 controller: 'forumsCtrl',
                 templateUrl: 'templates/forums.html'
+            })
+            .state('forum', {
+                url: '/forum/:slug',
+                controller: 'forumCtrl',
+                templateUrl: 'templates/forum.html'
             });
         $urlRouterProvider.otherwise('/');
     });

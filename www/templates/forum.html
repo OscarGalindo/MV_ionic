@@ -1,0 +1,17 @@
+<!--<ion-header-bar class="bar-dark">-->
+    <!--<h1 class="title">Foros</h1>-->
+<!--</ion-header-bar>-->
+<ion-view title="Foro">
+    <ion-content>
+        <div class="row row-center">
+            <div class="col">
+                <ion-list>
+                    <ion-item ng-repeat="topic in topics">
+                        <h2>{{topic.title}}</h2>
+                        <p>Paginas: {{topic.pages}}<br />Respuestas: {{topic.resp}}</p>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

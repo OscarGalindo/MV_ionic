@@ -14,7 +14,6 @@ angular.module('mv.controllers', ['mv.services', 'ionic.utils'])
     })
     .controller('HomeCtrl', function($rootScope, $scope, $state, $stateParams, MVRest, BusyService, $localstorage) {
         BusyService.show();
-
         user_data = $localstorage.getObject('user_data');
         $scope.nickname = user_data.nickname;
 
@@ -70,12 +69,28 @@ angular.module('mv.controllers', ['mv.services', 'ionic.utils'])
             }
         );
     })
-    .controller('forumsCtrl', function($scope, BusyService, MVRest) {
+    .controller('forumsCtrl', function($scope, $state, BusyService, MVRest) {
         BusyService.show();
+        console.log();
+
+        $scope.loadForum = function(slug) {
+            $state.go('forum', {slug: slug});
+        };
 
         MVRest.getforums()
             .then(function(data) {
                 $scope.forums = data.data;
+            })
+            .finally(function() {
+                BusyService.hide();
+            });
+    })
+    .controller('forumCtrl', function($scope, BusyService, MVRest, $stateParams) {
+        BusyService.show();
+
+        MVRest.getTopics($stateParams.slug)
+            .success(function(data) {
+                $scope.topics = data;
             })
             .finally(function() {
                 BusyService.hide();

@@ -18,7 +18,28 @@
   </head>
   <body ng-app="mv">
 
+    <ion-nav-bar class="bar-dark nav-title-slide-ios7">
+        <ion-nav-back-button class="button-clear">
+            <i class="ion-ios7-arrow-back"></i> Back
+        </ion-nav-back-button>
+    </ion-nav-bar>
+
     <ion-nav-view animation="fade-in"></ion-nav-view>
 
+    <ion-footer-bar class="footerbar bar-dark">
+        <div class="tabs-striped tabs-background-dark tabs-color-assertive">
+            <div class="tabs">
+                <a class="tab-item" ng-class="$state.current.name == 'home' ? 'active' : ''" ng-click="$state.go('home')">
+                    <i class="icon ion-home"></i>
+                </a>
+                <a class="tab-item" ng-class="$state.current.name != 'home' && $state.current.name != 'logout' ? 'active' : ''" ng-click="$state.go('forums')">
+                    <i class="icon ion-navicon"></i>
+                </a>
+                <a class="tab-item" ng-class="$state.current.name == 'logout' ? 'active' : ''" ng-click="$state.go('logout')">
+                    <i class="icon ion-log-out"></i>
+                </a>
+            </div>
+        </div>
+    </ion-footer-bar>
   </body>
 </html>
