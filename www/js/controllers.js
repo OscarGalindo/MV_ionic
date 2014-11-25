@@ -104,7 +104,6 @@ angular.module('mv.controllers', ['mv.services', 'ionic.utils'])
         BusyService.show();
         MVRest.getPost($stateParams.slug_forum, $stateParams.slug_post)
             .success(function(data) {
-                console.log(data);
                 $scope.posts = data;
             })
             .finally(function() {
