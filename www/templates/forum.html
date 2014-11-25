@@ -1,14 +1,11 @@
-<!--<ion-header-bar class="bar-dark">-->
-    <!--<h1 class="title">Foros</h1>-->
-<!--</ion-header-bar>-->
 <ion-view title="Foro">
     <ion-content>
         <div class="row row-center">
             <div class="col">
                 <ion-list>
-                    <ion-item ng-repeat="topic in topics">
+                    <ion-item ng-repeat="topic in topics" ng-click="loadPost(slug_forum, topic.href)">
                         <h2>{{topic.title}}</h2>
-                        <p>Paginas: {{topic.pages}}<br />Respuestas: {{topic.resp}}</p>
+                        <p>Respuestas: {{topic.resp}}</p>
                     </ion-item>
                 </ion-list>
             </div>

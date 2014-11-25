@@ -21,6 +21,9 @@ angular.module('mv.services', [])
         result.getTopics = function(slug) {
             return $http.get(base + '/getTopics/' + slug);
         };
+        result.getPost = function(slug_forum, slug_post) {
+            return $http.get(base + '/getPost/' + slug_forum + '/' + slug_post)
+        }
 
         return result;
     }])

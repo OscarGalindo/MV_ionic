@@ -71,7 +71,6 @@ angular.module('mv.controllers', ['mv.services', 'ionic.utils'])
     })
     .controller('forumsCtrl', function($scope, $state, BusyService, MVRest) {
         BusyService.show();
-        console.log();
 
         $scope.loadForum = function(slug) {
             $state.go('forum', {slug: slug});
@@ -85,12 +84,28 @@ angular.module('mv.controllers', ['mv.services', 'ionic.utils'])
                 BusyService.hide();
             });
     })
-    .controller('forumCtrl', function($scope, BusyService, MVRest, $stateParams) {
+    .controller('forumCtrl', function($scope, BusyService, MVRest, $stateParams, $state) {
         BusyService.show();
 
-        MVRest.getTopics($stateParams.slug)
+        $scope.loadPost = function(slug_forum, slug_post) {
+            $state.go('post', {slug_forum: slug_forum, slug_post: slug_post});
+        };
+
+        $scope.slug_forum = $stateParams.slug;
+        MVRest.getTopics($scope.slug_forum)
             .success(function(data) {
                 $scope.topics = data;
+            })
+            .finally(function() {
+                BusyService.hide();
+            });
+    })
+    .controller('postCtrl', function($scope, BusyService, MVRest, $stateParams) {
+        BusyService.show();
+        MVRest.getPost($stateParams.slug_forum, $stateParams.slug_post)
+            .success(function(data) {
+                console.log(data);
+                $scope.posts = data;
             })
             .finally(function() {
                 BusyService.hide();

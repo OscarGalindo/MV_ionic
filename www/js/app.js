@@ -42,6 +42,11 @@ angular.module('mv', ['ionic', 'mv.controllers'])
                 url: '/forum/:slug',
                 controller: 'forumCtrl',
                 templateUrl: 'templates/forum.html'
+            })
+            .state('post', {
+                url: '/post/:slug_forum/:slug_post',
+                controller: 'postCtrl',
+                templateUrl: 'templates/post.html'
             });
         $urlRouterProvider.otherwise('/');
     });
